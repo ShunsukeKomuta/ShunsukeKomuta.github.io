@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>PHP の配列は参照渡しにするべきか？値渡しにするべきか？  - Shunsuke Komuta</title>
+<meta name="description" content="Anubis is a simple minimalist theme for Hugo blog engine.">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://shunsukekomuta.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://shunsukekomuta.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://shunsukekomuta.github.io/favicon.png">
+
+<link rel="stylesheet" href="https://shunsukekomuta.github.io/css/style.css?rnd=1587463980" />
+
+<meta property="og:title" content="PHP の配列は参照渡しにするべきか？値渡しにするべきか？" />
+<meta property="og:description" content="&amp; をたくさん使って参照渡しをしているコードを見ます。 参照渡しをした方がいいのか、値渡しにしてメソッドに結果値を返させるのではどちらが良いかと" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shunsukekomuta.github.io/call-by-reference-or-value/" />
+<meta property="article:published_time" content="2017-06-16T11:00:46+09:00" />
+<meta property="article:modified_time" content="2017-06-16T11:00:46+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PHP の配列は参照渡しにするべきか？値渡しにするべきか？"/>
+<meta name="twitter:description" content="&amp; をたくさん使って参照渡しをしているコードを見ます。 参照渡しをした方がいいのか、値渡しにしてメソッドに結果値を返させるのではどちらが良いかと"/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="https://shunsukekomuta.github.io/">Shunsuke Komuta</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/categories/" title="">Categories</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+    <a class="" href="/posts/" title="">Archive</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+    <article class="post">
+        <header>
+            <h1>PHP の配列は参照渡しにするべきか？値渡しにするべきか？</h1>
+        </header>
+        <div class="content">
+            <p><code>&amp;</code> をたくさん使って参照渡しをしているコードを見ます。<br>
+参照渡しをした方がいいのか、値渡しにしてメソッドに結果値を返させるのではどちらが良いかということを考えてみたいと思います。</p>
+<h1 id="phpの仕様">PHPの仕様</h1>
+<ul>
+<li>配列は値</li>
+<li>デフォルトは値渡し</li>
+<li>パラメータに&amp;を付けると参照渡しができる</li>
+</ul>
+<h1 id="参照渡しと値渡しのメリットデメリット">参照渡しと値渡しのメリット・デメリット</h1>
+<h2 id="参照渡し">参照渡し</h2>
+<ul>
+<li>java や C++ の参照渡しと同じ感覚でコーディングできる</li>
+<li>&amp;を書き忘れると呼び出しではデータが変わらない、またそれに気が付きにくい</li>
+</ul>
+<h2 id="値渡し">値渡し</h2>
+<ul>
+<li><code>&amp;</code> を書き忘れるというヒューマンエラーが起きない</li>
+<li>返却される値を見ればいいので、デバッグが楽</li>
+<li>必ず値を返さなければならない</li>
+</ul>
+<h1 id="観点">観点</h1>
+<p>ここで注目したいのが、値渡しとしてメソッドを定義すれば <code>&amp;</code> を書き忘れるというヒューマンエラーが起きないということです。<br>
+先日リファクタリングをしていてメソッドの抽出を行った際、<code>&amp;</code> を付け忘れてしまって配列の値が正しくないことに数日気がつかないということがありました。<br>
+その配列は4つのクラスをまたいでおり、どこで値がおかしくなっているのかをデバッグするのに大変時間がかかりました。</p>
+<h1 id="まとめ">まとめ</h1>
+<p>配列を引数に渡すメソッドを定義するときに、参照渡しか値渡しにするべきか迷ったら「値渡し」を選択した方がいいと思います。</p>
+
+        </div>
+        <div class="article-info">
+    
+        <div class="article-date">2017-06-16</div>
+    
+    <div class="article-taxonomies">
+        
+            
+                <ul class="article-tags">
+                    
+                        <li><a href="https://shunsukekomuta.github.io/tags/php">#php</a></li>
+                    
+                </ul>
+        
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                <p>© Shunsuke Komuta, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

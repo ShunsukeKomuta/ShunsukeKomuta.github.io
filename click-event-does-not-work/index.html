@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>iOS で、要素をタッチしてもクリックイベントが発生しない問題への対処  - Shunsuke Komuta</title>
+<meta name="description" content="Anubis is a simple minimalist theme for Hugo blog engine.">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://shunsukekomuta.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://shunsukekomuta.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://shunsukekomuta.github.io/favicon.png">
+
+<link rel="stylesheet" href="https://shunsukekomuta.github.io/css/style.css?rnd=1587463980" />
+
+<meta property="og:title" content="iOS で、要素をタッチしてもクリックイベントが発生しない問題への対処" />
+<meta property="og:description" content="業務でウェブサイトを作成していて、iPhone、iPad でフローティングの枠外を押した時に閉じる処理が作用しないという問題に遭遇しました。 $(document).on(&#39;click&#39;," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shunsukekomuta.github.io/click-event-does-not-work/" />
+<meta property="article:published_time" content="2017-06-15T20:09:35+09:00" />
+<meta property="article:modified_time" content="2017-06-15T20:09:35+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="iOS で、要素をタッチしてもクリックイベントが発生しない問題への対処"/>
+<meta name="twitter:description" content="業務でウェブサイトを作成していて、iPhone、iPad でフローティングの枠外を押した時に閉じる処理が作用しないという問題に遭遇しました。 $(document).on(&#39;click&#39;,"/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="https://shunsukekomuta.github.io/">Shunsuke Komuta</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/categories/" title="">Categories</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+    <a class="" href="/posts/" title="">Archive</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+    <article class="post">
+        <header>
+            <h1>iOS で、要素をタッチしてもクリックイベントが発生しない問題への対処</h1>
+        </header>
+        <div class="content">
+            <p>業務でウェブサイトを作成していて、iPhone、iPad でフローティングの枠外を押した時に閉じる処理が作用しないという問題に遭遇しました。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">$</span>(document).<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>() {
+  <span style="color:#75715e">// ポップアップを閉じる処理
+</span><span style="color:#75715e"></span>});
+</code></pre></div><h1 id="原因">原因</h1>
+<p>HTML で通常クリックが期待される要素以外ではイベントが発生しない。
+そのため、クリックイベントを書いてもその処理が行われることがない。</p>
+<h2 id="クリックされることが期待される要素">クリックされることが期待される要素</h2>
+<p>button 要素、a 要素など</p>
+<h2 id="クリックされることが期待されない要素">クリックされることが期待されない要素</h2>
+<p>div 要素、span 要素、p 要素 など</p>
+<h1 id="解決方法">解決方法</h1>
+<p>下記の方法だけではありませんが、最も簡単と思われる方法を２つ挙げます。</p>
+<h2 id="1-cursorpointer-のスタイルを指定">1. cursor:pointer のスタイルを指定</h2>
+<p>こちらは問題を調べたらすぐに出てきた解決方法です。
+下記の理由からこちらの解決方法をとることはやめました。</p>
+<ul>
+<li>実際には見えないが、カーソルが常に指型カーソルになっていると思うと、個人的には気持ち悪い</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">&lt;</span><span style="color:#f92672">style</span><span style="color:#f92672">&gt;</span>
+.<span style="color:#a6e22e">container</span> {
+  <span style="color:#66d9ef">cursor</span>:<span style="color:#66d9ef">pointer</span>;
+}
+<span style="color:#f92672">&lt;/</span><span style="color:#f92672">style</span><span style="color:#f92672">&gt;</span>
+</code></pre></div><h2 id="2-空のイベントハンドラを指定">2. 空のイベントハンドラを指定</h2>
+<p>html または js にどちらに書いてもかまいませんが、 <strong>body よりも下の要素</strong> に指定してください。</p>
+<h3 id="html-に記述する">html に記述する</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><h3 id="js-に記述する">js に記述する</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.container&#39;</span>).<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>(){});
+</code></pre></div>
+        </div>
+        <div class="article-info">
+    
+        <div class="article-date">2017-06-15</div>
+    
+    <div class="article-taxonomies">
+        
+            
+                <ul class="article-tags">
+                    
+                        <li><a href="https://shunsukekomuta.github.io/tags/javascript">#javascript</a></li>
+                    
+                </ul>
+        
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                <p>© Shunsuke Komuta, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

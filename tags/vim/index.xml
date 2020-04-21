@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vim on Shunsuke Komuta</title>
+    <link>https://shunsukekomuta.github.io/tags/vim/</link>
+    <description>Shunsuke Komuta (vim)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 04 Jun 2017 18:20:18 +0900</lastBuildDate>
+    
+    <atom:link href="https://shunsukekomuta.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>vimで複数選択を可能にするプラグイン</title>
+      <link>https://shunsukekomuta.github.io/vim-multiple-cursor/</link>
+      <pubDate>Sun, 04 Jun 2017 18:20:18 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.github.io/vim-multiple-cursor/</guid>
+      <description>&lt;h2 id=&#34;マルチカーソル&#34;&gt;マルチカーソル&lt;/h2&gt;
+&lt;p&gt;Sublime Textの機能。
+複数の文字列を同時に選択し、全ての選択箇所を一度に編集できる機能です。
+これがあるから離れられない人も多いはず。&lt;/p&gt;
+&lt;h2 id=&#34;vim-multiple-cursors&#34;&gt;vim-multiple-cursors&lt;/h2&gt;
+&lt;p&gt;そんな便利なものvimにもありました。作成者の方には本当に感謝です。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/terryma/vim-multiple-cursors/blob/master/assets/example1.gif?raw=true&#34; alt=&#34;Qiita&#34;&gt;
+&lt;a href=&#34;https://github.com/terryma/vim-multiple-cursors&#34;&gt;terryma/vim-multiple-cursorsから引用&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;問題点&#34;&gt;問題点&lt;/h2&gt;
+&lt;p&gt;リファクタリングをする際などにとても便利なプラグインですが、問題点があります。&lt;/p&gt;
+&lt;p&gt;まず ctrl+n で複数行選択したい単語を選択するのですが、
+その選択区間は単語単位に限られていて、選択後に単語の末尾以外に選択範囲を変えると複数選択を実行できません。&lt;/p&gt;
+&lt;p&gt;つまり &lt;code&gt;.&lt;/code&gt; や &lt;code&gt;-&amp;gt;&lt;/code&gt; を間に挟んだ選択や、 &lt;code&gt;(&lt;/code&gt; を含んだ複数選択を実行できないことがあります。&lt;/p&gt;
+&lt;h2 id=&#34;解決策&#34;&gt;解決策&lt;/h2&gt;
+&lt;p&gt;最初の文字列選択をデフォルトのビジュアルモードで行うと上手く動作します。&lt;/p&gt;
+&lt;p&gt;私は以下のように単語を選択します。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;単語の先頭にカーソル : &lt;code&gt;ve&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;単語の途中にカーソル : &lt;code&gt;viw&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;de&lt;/code&gt; や &lt;code&gt;diw&lt;/code&gt; 、 &lt;code&gt;ce&lt;/code&gt; や &lt;code&gt;ciw&lt;/code&gt; などにも応用が効くのでvimに出来るだけ慣れるためにも使っています。&lt;/p&gt;
+&lt;h2 id=&#34;謝辞&#34;&gt;謝辞&lt;/h2&gt;
+&lt;p&gt;最後まで読んでいただき、誠にありがとうございます。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

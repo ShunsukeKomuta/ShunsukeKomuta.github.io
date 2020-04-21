@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>コミット履歴の改善に役立つ git rebase -i 5つの使い方  - Shunsuke Komuta</title>
+<meta name="description" content="Anubis is a simple minimalist theme for Hugo blog engine.">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://shunsukekomuta.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://shunsukekomuta.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://shunsukekomuta.github.io/favicon.png">
+
+<link rel="stylesheet" href="https://shunsukekomuta.github.io/css/style.css?rnd=1587463980" />
+
+<meta property="og:title" content="コミット履歴の改善に役立つ git rebase -i 5つの使い方" />
+<meta property="og:description" content="今までrebaseは、基本的にgit rebase origin/masterしか使ってきませんでした。 リモートにpushされていると何かと悪さをするやつ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shunsukekomuta.github.io/git-rebase-i/" />
+<meta property="article:published_time" content="2017-06-04T16:55:36+09:00" />
+<meta property="article:modified_time" content="2017-06-04T16:55:36+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="コミット履歴の改善に役立つ git rebase -i 5つの使い方"/>
+<meta name="twitter:description" content="今までrebaseは、基本的にgit rebase origin/masterしか使ってきませんでした。 リモートにpushされていると何かと悪さをするやつ"/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="https://shunsukekomuta.github.io/">Shunsuke Komuta</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/categories/" title="">Categories</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+    <a class="" href="/posts/" title="">Archive</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+    <article class="post">
+        <header>
+            <h1>コミット履歴の改善に役立つ git rebase -i 5つの使い方</h1>
+        </header>
+        <div class="content">
+            <p>今までrebaseは、基本的に<code>git rebase origin/master</code>しか使ってきませんでした。
+リモートにpushされていると何かと悪さをするやつだと思って、あまり関心がありませんでした。</p>
+<p>しかしローカルで作業している限り便利なものだと知ったので、<code>git rebase -i</code> の機能の一部分をまとめました。</p>
+<ul>
+<li>git version 2.6.4</li>
+</ul>
+<h1 id="1-コミット名の編集">1. コミット名の編集</h1>
+<p><code>pick</code> を <code>r</code> に変更します</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git rebase -i HEAD~~
+</code></pre></div><p>テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。</p>
+<pre><code># 変更前
+pick 26ef747 A
+
+# 変更後
+r 26ef747 A
+</code></pre><p>テキストエディタを終了するとすぐに、コミットの編集画面が表示されるので、コミット名を変更します。</p>
+<pre><code>  A
+
+  # Please enter the commit message for your changes. Lines starting
+  # with '#' will be ignored, and an empty message aborts the commit.
+  #
+  # Date:      Tue Mar 22 22:49:23 2016 +0900
+  #
+  # interactive rebase in progress; onto f98d1ca
+  # Last command done (1 command done):
+  #    r 2f4e52f A
+  # No commands remaining.
+  # You are currently editing a commit while rebasing branch 'master' on 'f98d1ca'.
+  #
+
+</code></pre><h1 id="2-コミットの編集">2. コミットの編集</h1>
+<p><code>pick</code> を <code>e</code> に変更します</p>
+<p><a href="http://www.backlog.jp/git-guide/stepup/stepup7_6.html">6. rebase -i でコミットを修正する【チュートリアル3 コミットを書き換えよう！】 _ サルでもわかるGit入門 〜バージョン管理を使いこなそう〜 _ どこでもプロジェクト管理バックログ</a></p>
+<h2 id="補足">補足</h2>
+<p><code>git  commit --amend</code>実行時にコミット名も変更することが出来ます。</p>
+<h1 id="3-コミットをまとめる">3. コミットをまとめる</h1>
+<p><code>pick</code> を <code>s</code> に変更します</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git rebase -i HEAD~~
+</code></pre></div><p>テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。</p>
+<pre><code># 変更前
+pick 195172f A
+pick c064177 B
+pick 0a1df4a C
+pick 36d169f D
+
+# 変更後
+pick 195172f A
+s c064177 B
+pick 0a1df4a C
+pick 36d169f D
+</code></pre><p>コンフリクトが起きた場合、コンフリクト部分を修正後に下記を実行</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add path/to/dir path/to/file
+$ git rebase --continue
+</code></pre></div><h2 id="補足-1">補足</h2>
+<p>squash は 直前のコミットにまとめます。
+上記のrebaseでは、以下のようなコミットを</p>
+<pre><code>A---B---C---D
+</code></pre><p>コミットBの<code>pick</code> を <code>s</code>に変更し</p>
+<pre><code>AB'---C---D
+</code></pre><p>のようにします。</p>
+<p>###合わせ技
+以下の様なコミットがあって、</p>
+<pre><code>A---B---C---D  master
+</code></pre><p>以下のようにしたい時は、</p>
+<pre><code>AC'---B---D  master
+</code></pre><p>「コミットの順番を変更する」を組み合わせることでできます。</p>
+<h1 id="4-コミットの削除">4. コミットの削除</h1>
+<p><code>pick</code> を <code>d</code> に変更します</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git rebase -i HEAD~~
+</code></pre></div><p>テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。</p>
+<pre><code># 変更前
+pick a42f9e0 B
+
+# 変更後
+d a42f9e0 B
+</code></pre><p>コンフリクトが起きた場合、コンフリクト部分を修正後に下記を実行</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add path/to/dir path/to/file
+$ git rebase --continue
+</code></pre></div><h1 id="5-コミットの順番の変更">5. コミットの順番の変更</h1>
+<p>文字通りコミットの順番を変更します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git rebase -i HEAD~~
+</code></pre></div><p>テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。</p>
+<pre><code># 変更前
+pick 26ef747 A
+pick a42f9e0 B
+
+# 変更後
+pick a42f9e0 B
+pick 26ef747 A
+</code></pre><p>コンフリクトが起きた場合、コンフリクト部分を修正後に下記を実行</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add path/to/dir path/to/file
+$ git rebase --continue
+</code></pre></div><p>#rebase で行った修正を取り消したい場合</p>
+<p>rebaseを行った直後であれば以下のコマンドで戻せます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$  git reset --hard ORIG_HEAD
+</code></pre></div><p>もっと前に戻したければreflogから、戻したいコミットIDを取得します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git reflog
+$ git reset --hard commit_id
+</code></pre></div><h1 id="tips">Tips</h1>
+<p>下記のコマンドはmasterとカレントブランチの分岐点のコミットIDを表示します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git show-branch --merge-base master HEAD
+</code></pre></div><p>このコマンドとrebase -i を組み合わせて</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git rebase -i <span style="color:#66d9ef">$(</span>git show-branch --merge-base master HEAD<span style="color:#66d9ef">)</span>
+</code></pre></div><p>とやると、作業ブランチのコミットだけを表示できるので便利。</p>
+
+        </div>
+        <div class="article-info">
+    
+        <div class="article-date">2017-06-04</div>
+    
+    <div class="article-taxonomies">
+        
+            <ul class="article-categories">
+                
+                    <li><a href="https://shunsukekomuta.github.io/categories/git">git</a></li>
+                
+            </ul>
+            
+            
+                <ul class="article-tags">
+                    
+                        <li><a href="https://shunsukekomuta.github.io/tags/git">#git</a></li>
+                    
+                </ul>
+        
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                <p>© Shunsuke Komuta, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

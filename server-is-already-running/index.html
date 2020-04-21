@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道  - Shunsuke Komuta</title>
+<meta name="description" content="Anubis is a simple minimalist theme for Hugo blog engine.">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://shunsukekomuta.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://shunsukekomuta.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://shunsukekomuta.github.io/favicon.png">
+
+<link rel="stylesheet" href="https://shunsukekomuta.github.io/css/style.css?rnd=1587463980" />
+
+<meta property="og:title" content="Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道" />
+<meta property="og:description" content="本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。 ただ、Rails × Dockerで開発" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shunsukekomuta.github.io/server-is-already-running/" />
+<meta property="article:published_time" content="2017-06-01T14:21:45+09:00" />
+<meta property="article:modified_time" content="2017-06-01T14:21:45+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道"/>
+<meta name="twitter:description" content="本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。 ただ、Rails × Dockerで開発"/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="https://shunsukekomuta.github.io/">Shunsuke Komuta</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/categories/" title="">Categories</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+    <a class="" href="/posts/" title="">Archive</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+    <article class="post">
+        <header>
+            <h1>Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道</h1>
+        </header>
+        <div class="content">
+            <p>本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。
+ただ、Rails × Dockerで開発する人より多くの人に見てもらえることを目的として書きました。
+Rails の A server is already running と聞いて「ああ、あれのことか」と思った方は本記事は読み飛ばしてください。</p>
+<h2 id="docker-composeyml">docker-compose.yml</h2>
+<pre><code>db:
+  image: postgres
+web:
+  build: .
+  # コンテナ立ち上げ時に開発用サーバを起動
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  volumes:
+    - .:/myapp
+  ports:
+    - &quot;3000:3000&quot;
+  links:
+    - db
+</code></pre><h1 id="a-server-is-already-running">A server is already running.</h1>
+<p>コンテナを立ち上げますが、失敗しています。</p>
+<pre><code>$ docker-compose up -d
+$ docker-compose ps
+        Name                       Command               State     Ports
+--------------------------------------------------------------------------
+railsprojectdocker_db_1    /docker-entrypoint.sh postgres   Up       5432/tcp
+railsprojectdocker_web_1   bundle exec rails s -p 300 ...   Exit 1
+</code></pre><p>以下のコマンドでログを確認します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose logs
+~
+web_1 | <span style="color:#f92672">=</span>&gt; Booting WEBrick
+web_1 | <span style="color:#f92672">=</span>&gt; Rails 4.2.4 application starting in development on http://0.0.0.0:3000
+web_1 | <span style="color:#f92672">=</span>&gt; Run <span style="color:#e6db74">`</span>rails server -h<span style="color:#e6db74">`</span> <span style="color:#66d9ef">for</span> more startup options
+web_1 | <span style="color:#f92672">=</span>&gt; Ctrl-C to shutdown server
+web_1 | A server is already running. Check /myapp/rails-app/tmp/pids/server.pid.
+web_1 | Exiting
+</code></pre></div><h1 id="問題と対処">問題と対処</h1>
+<p>Rails に付随しているWEBサーバが正常に終了していない。
+<code>docker-compose kill</code> や 何かの拍子でコンテナが終了すると起きてしまいます。</p>
+<h2 id="serverpid-に-pid-の情報が保持されたまま終了">server.pid に pid の情報が保持されたまま終了</h2>
+<p>pid は、開発用WEBサーバを起動するときに tmp/pids/server.pid に書き込まれ、終了するときに削除されます。
+server.pid に pid が書かれていると開発用WEBサーバが起動中（プロセスがある）と判断されてしまいます。</p>
+<h2 id="pid-の情報を削除">pid の情報を削除</h2>
+<p>server.pid に書かれた pid を削除する、もしくは server.pid を削除します。
+server.pid を削除しても、<code>rails server</code>を実行した時に自動で作成されます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rm railsproject-ui/tmp/pids/server.pid
+</code></pre></div>
+        </div>
+        <div class="article-info">
+    
+        <div class="article-date">2017-06-01</div>
+    
+    <div class="article-taxonomies">
+        
+            <ul class="article-categories">
+                
+                    <li><a href="https://shunsukekomuta.github.io/categories/rails">rails</a></li>
+                
+            </ul>
+            
+            
+                <ul class="article-tags">
+                    
+                        <li><a href="https://shunsukekomuta.github.io/tags/rails">#rails</a></li>
+                    
+                </ul>
+        
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                <p>© Shunsuke Komuta, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

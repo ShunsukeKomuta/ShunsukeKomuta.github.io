@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処  - Shunsuke Komuta</title>
+<meta name="description" content="Anubis is a simple minimalist theme for Hugo blog engine.">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://shunsukekomuta.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://shunsukekomuta.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://shunsukekomuta.github.io/favicon.png">
+
+<link rel="stylesheet" href="https://shunsukekomuta.github.io/css/style.css?rnd=1587463980" />
+
+<meta property="og:title" content="Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処" />
+<meta property="og:description" content="Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処方法を紹介します。 以下の記事の中でも言っているように、User のキーマップを編集" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shunsukekomuta.github.io/conflicted-sublime-keymap/" />
+<meta property="article:published_time" content="2017-06-11T23:18:12+09:00" />
+<meta property="article:modified_time" content="2017-06-11T23:18:12+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処"/>
+<meta name="twitter:description" content="Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処方法を紹介します。 以下の記事の中でも言っているように、User のキーマップを編集"/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="https://shunsukekomuta.github.io/">Shunsuke Komuta</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/categories/" title="">Categories</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+    <a class="" href="/posts/" title="">Archive</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+    <article class="post">
+        <header>
+            <h1>Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処</h1>
+        </header>
+        <div class="content">
+            <p>Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処方法を紹介します。<br>
+以下の記事の中でも言っているように、User のキーマップを編集して優先させたいキーマップを無効にするという方法もあるが、これでは別のアプリケーションのキーマップ使えなくなってしまいます。</p>
+<blockquote>
+<pre><code>    [
+        { &quot;keys&quot;: [&quot;ctrl+g&quot;], &quot;command&quot;: &quot;unbound&quot; }
+    ]
+</code></pre><p>この設定を行うことで、 Ctrl+G を押しても行番号指定ジャンプのためのオーバーレイは表示されなくなる。しかし、 SKK 側には Ctrl+G は伝達されない。依然、キーマップ上でその入力は Sublime Text のものとして登録されているためだ。</p>
+<p><a href="http://qiita.com/risou/items/e509ab9cd6ad92988021">Mac の Sublime Text 3 で SKK を快適に使う - Qiita</a></p>
+</blockquote>
+<p>この記事では、Default キーマップ用のファイルを作成するという方法で解決をしていますが、「直接編集できないの?」ということで調べてみました。</p>
+<p>以下のようにしてファイルパスを確認して、ファイルを直接編集しようとしたのですが、このファイルパスにファイルは存在しませんでした。</p>
+<figure>
+    <img src="/img/Default%20%28OSX%29.sublime-keymap.png"/> <figcaption>
+            <h4>Default (OSX).sublime-keymap</h4>
+        </figcaption>
+</figure>
+
+<p>Sublimte Text 3 のフォーラムでのやり取りを見ると、実際のファイルは <code>/Applications/Sublime Text 3.app/Contents/MacOS/Packages/Default.sublime-package</code> にバンドルされているようです。</p>
+<div class="embed">
+    <iframe type="text/html" width="100%" height="180" src="https://hatenablog-parts.com/embed?url=https%3a%2f%2fforum.sublimetext.com%2ft%2fst3-where-is-default-osx-sublime-keymap-located%2f10757" allowfullscreen frameborder="0">
+    </iframe>
+</div>
+<p>Package ファイルを編集するには、 <a href="https://github.com/skuroda/PackageResourceViewer">PackageResourceViewer</a> を使用します。</p>
+<p>まずは、PackageResourceViewer を Package Control からインストールします。そして、Command Palette から以下の手順を実行すると、Default (OSX).sublime-keymap が開きます。</p>
+<pre><code>PackageResourceViewer: Open Resource &gt; Default &gt; Default (OSX).sublime-keymap
+</code></pre><p>Default (OSX).sublime-keymap が編集できるようになっているので、別のアプリケーションで優先させたいキーマップをコメントアウトするか削除します。</p>
+<pre><code>  // { &quot;keys&quot;: [&quot;ctrl+g&quot;], &quot;command&quot;: &quot;show_overlay&quot;, &quot;args&quot;: {&quot;overlay&quot;: &quot;goto&quot;, &quot;text&quot;: &quot;:&quot;} },
+</code></pre>
+        </div>
+        <div class="article-info">
+    
+        <div class="article-date">2017-06-11</div>
+    
+    <div class="article-taxonomies">
+        
+            
+                <ul class="article-tags">
+                    
+                        <li><a href="https://shunsukekomuta.github.io/tags/sublime">#sublime</a></li>
+                    
+                </ul>
+        
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                <p>© Shunsuke Komuta, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

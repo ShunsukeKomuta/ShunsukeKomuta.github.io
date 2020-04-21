@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>Laravel - テーブルに日本語を含むカラムに対して、ミューテーターを使用したい時  - Shunsuke Komuta</title>
+<meta name="description" content="Anubis is a simple minimalist theme for Hugo blog engine.">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://shunsukekomuta.github.io/rss/">
+
+<link rel="icon" type="image/x-icon" href="https://shunsukekomuta.github.io/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://shunsukekomuta.github.io/favicon.png">
+
+<link rel="stylesheet" href="https://shunsukekomuta.github.io/css/style.css?rnd=1587463980" />
+
+<meta property="og:title" content="Laravel - テーブルに日本語を含むカラムに対して、ミューテーターを使用したい時" />
+<meta property="og:description" content="結論から言うと、モデルに対して以下の2つを行う。 ただし、日本語名をそのまま使用するという訳にはいかない。 新しくアクセッサーを作成する 属性名を" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shunsukekomuta.github.io/use-mutator-with-the-column-contains-double-byte-character-in-laravel/" />
+<meta property="article:published_time" content="2017-11-27T12:00:46+09:00" />
+<meta property="article:modified_time" content="2017-11-27T12:00:46+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Laravel - テーブルに日本語を含むカラムに対して、ミューテーターを使用したい時"/>
+<meta name="twitter:description" content="結論から言うと、モデルに対して以下の2つを行う。 ただし、日本語名をそのまま使用するという訳にはいかない。 新しくアクセッサーを作成する 属性名を"/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="https://shunsukekomuta.github.io/">Shunsuke Komuta</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/about/" title="">About</a>
+    
+    <a class="" href="/categories/" title="">Categories</a>
+    
+    <a class="" href="/tags/" title="">Tags</a>
+    
+    <a class="" href="/posts/" title="">Archive</a>
+    
+</nav>
+
+            
+        </header>
+        <main>
+            
+
+    <article class="post">
+        <header>
+            <h1>Laravel - テーブルに日本語を含むカラムに対して、ミューテーターを使用したい時</h1>
+        </header>
+        <div class="content">
+            <p>結論から言うと、モデルに対して以下の2つを行う。
+ただし、日本語名をそのまま使用するという訳にはいかない。</p>
+<ul>
+<li>新しくアクセッサーを作成する</li>
+<li>属性名をモデルの <code>$appends</code> プロパティに追加する。(アクセッサーはキャメルケースで書かれているが、属性名はスネークケースで記入する)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sale</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Eloquent</span> {
+
+    <span style="color:#66d9ef">protected</span> $appends <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;price&#39;</span>];
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getPriceAttribute</span>()
+    {
+        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getAttribute</span>(<span style="color:#e6db74">&#39;料金&#39;</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.08</span>;
+    }
+
+}
+</code></pre></div><p>言うまでもないけれども、日本語のターブル名やカラム名は使わなければこんなことをしなくてすむ。</p>
+<h1 id="参考">参考</h1>
+<ul>
+<li><a href="https://laravel.com/docs/5.5/eloquent-serialization#appending-values-to-json">Eloquent: Serialization - Laravel - The PHP Framework For Web Artisans</a></li>
+</ul>
+
+        </div>
+        <div class="article-info">
+    
+        <div class="article-date">2017-11-27</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                <p>© Shunsuke Komuta, 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

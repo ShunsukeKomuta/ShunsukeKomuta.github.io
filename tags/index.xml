@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on My New Hugo Site</title>
+    <title>Tags on Shunsuke Komuta</title>
     <link>https://shunsukekomuta.github.io/tags/</link>
-    <description>My New Hugo Site (Tags)</description>
+    <description>Shunsuke Komuta (Tags)</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja-JP</language>
+    <lastBuildDate>Fri, 16 Jun 2017 11:00:46 +0900</lastBuildDate>
     
     <atom:link href="https://shunsukekomuta.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     

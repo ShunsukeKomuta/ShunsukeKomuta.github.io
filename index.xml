@@ -1,24 +1,389 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>Shunsuke Komuta</title>
     <link>https://shunsukekomuta.github.io/</link>
-    <description>My New Hugo Site</description>
+    <description>Shunsuke Komuta</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 21 Apr 2020 00:22:47 +0900</lastBuildDate>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 27 Nov 2017 12:00:46 +0900</lastBuildDate>
     
     <atom:link href="https://shunsukekomuta.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>My First Post</title>
-      <link>https://shunsukekomuta.github.io/posts/my-first-post/</link>
-      <pubDate>Tue, 21 Apr 2020 00:22:47 +0900</pubDate>
+      <title>Laravel - テーブルに日本語を含むカラムに対して、ミューテーターを使用したい時</title>
+      <link>https://shunsukekomuta.github.io/use-mutator-with-the-column-contains-double-byte-character-in-laravel/</link>
+      <pubDate>Mon, 27 Nov 2017 12:00:46 +0900</pubDate>
       
-      <guid>https://shunsukekomuta.github.io/posts/my-first-post/</guid>
-      <description>&lt;p&gt;Hello World!!&lt;/p&gt;
+      <guid>https://shunsukekomuta.github.io/use-mutator-with-the-column-contains-double-byte-character-in-laravel/</guid>
+      <description>&lt;p&gt;結論から言うと、モデルに対して以下の2つを行う。
+ただし、日本語名をそのまま使用するという訳にはいかない。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;新しくアクセッサーを作成する&lt;/li&gt;
+&lt;li&gt;属性名をモデルの &lt;code&gt;$appends&lt;/code&gt; プロパティに追加する。(アクセッサーはキャメルケースで書かれているが、属性名はスネークケースで記入する)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Sale&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;extends&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Eloquent&lt;/span&gt; {
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;protected&lt;/span&gt; $appends &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;price&amp;#39;&lt;/span&gt;];
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getPriceAttribute&lt;/span&gt;()
+    {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; $this&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getAttribute&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;料金&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1.08&lt;/span&gt;;
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;言うまでもないけれども、日本語のターブル名やカラム名は使わなければこんなことをしなくてすむ。&lt;/p&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://laravel.com/docs/5.5/eloquent-serialization#appending-values-to-json&#34;&gt;Eloquent: Serialization - Laravel - The PHP Framework For Web Artisans&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>「自分の中に毒を持て」を読んで、ショックを受けた話</title>
+      <link>https://shunsukekomuta.github.io/201708282242/</link>
+      <pubDate>Mon, 28 Aug 2017 22:42:13 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.github.io/201708282242/</guid>
+      <description>&lt;p&gt;最近本を読んでないなぁと思ってふと手にとった本が、「芸術は爆発だ!」で有名な岡本太郎のこの本でした。&lt;br&gt;
+ブログをもう3ヶ月も書いていないのに、書こうという気にさせてくれました。&lt;/p&gt;
+&lt;p&gt;まず、本を読み始めてすぐに衝撃を受けました。
+自分が大切にしてきた価値観を真っ向から否定するような一文から文章が始まりました。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;人生は積み重ねだと誰でも思っているようだ。ぼくは、逆に積みへらすべきだと思う。財産も知識も、蓄えれば蓄えるほど、かえって人間は自在さを失なってしまう。過去の蓄積にこだわると、いつの間にか堆積物に埋もれて身動きができなくなる。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;私も著者が言う「誰でも」の内の「一人」の考えを持っていました。&lt;br&gt;
+人からの評価や評判を気にするあまり自分の意見を言えない。&lt;br&gt;
+過去の成功体験から抜け出すことができない。&lt;/p&gt;
+&lt;p&gt;本では、「自分の殻をやぶれ」、「人生に甘えるな」、「楽な生き方をするな」などと説明が続いていきますが、読んでいくうちに最初の衝撃を受けた感覚は薄れ、「よくある自己啓発本と一緒で、どうせ自分に変化なんて起きないんだろうな」思いながら読んでいました。&lt;/p&gt;
+&lt;p&gt;しかし、また衝撃を受けます。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;あれかこれかという場合に、なぜ迷うのか。こうやったら食えないかもしれない、もう一方の道は誰でも選ぶ、ちゃんと食える道ことが保証された安全な道だ。それなら迷うことはないはずだ。もし食うことだけを考えるなら。&lt;/p&gt;
+&lt;p&gt;そうじゃないから迷うんだ。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;この文章を読んで確かにそうだなと本当に思ってしまい、「チャレンジしたい」「迷った時は困難な道を選びたい」と思うようになり、実際ブログを書くに至っています。&lt;/p&gt;
+&lt;p&gt;ブログを立ち挙げたきっかけは、以下のようなことを得たいと思ったからです。&lt;br&gt;
+なかなか自分に甘えて更新できていませんでしたが、本当に付けたい力だと思っているのでブログの更新を頑張って行きたいと思います。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;問題を正しく切り分ける力を付けたい&lt;/li&gt;
+&lt;li&gt;人に正確に物事を伝える力を付けたい&lt;/li&gt;
+&lt;li&gt;アウトプットをすることで理解を深めたい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;まだ、20ページ程度しか読んでいませんが、「現在の仕事や生活でモヤモヤしている人」や、「選択をする際に積極的になれない人」にとてもお勧めな本だと思っています。&lt;br&gt;
+本の続きを読んで、もし記事を書いたら下にリンク貼っていきたいと思います。&lt;/p&gt;
+&lt;p&gt;本の購入リンクは今度貼ります。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PHP の配列は参照渡しにするべきか？値渡しにするべきか？</title>
+      <link>https://shunsukekomuta.github.io/call-by-reference-or-value/</link>
+      <pubDate>Fri, 16 Jun 2017 11:00:46 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.github.io/call-by-reference-or-value/</guid>
+      <description>&lt;p&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; をたくさん使って参照渡しをしているコードを見ます。&lt;br&gt;
+参照渡しをした方がいいのか、値渡しにしてメソッドに結果値を返させるのではどちらが良いかということを考えてみたいと思います。&lt;/p&gt;
+&lt;h1 id=&#34;phpの仕様&#34;&gt;PHPの仕様&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;配列は値&lt;/li&gt;
+&lt;li&gt;デフォルトは値渡し&lt;/li&gt;
+&lt;li&gt;パラメータに&amp;amp;を付けると参照渡しができる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参照渡しと値渡しのメリットデメリット&#34;&gt;参照渡しと値渡しのメリット・デメリット&lt;/h1&gt;
+&lt;h2 id=&#34;参照渡し&#34;&gt;参照渡し&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;java や C++ の参照渡しと同じ感覚でコーディングできる&lt;/li&gt;
+&lt;li&gt;&amp;amp;を書き忘れると呼び出しではデータが変わらない、またそれに気が付きにくい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;値渡し&#34;&gt;値渡し&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; を書き忘れるというヒューマンエラーが起きない&lt;/li&gt;
+&lt;li&gt;返却される値を見ればいいので、デバッグが楽&lt;/li&gt;
+&lt;li&gt;必ず値を返さなければならない&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;観点&#34;&gt;観点&lt;/h1&gt;
+&lt;p&gt;ここで注目したいのが、値渡しとしてメソッドを定義すれば &lt;code&gt;&amp;amp;&lt;/code&gt; を書き忘れるというヒューマンエラーが起きないということです。&lt;br&gt;
+先日リファクタリングをしていてメソッドの抽出を行った際、&lt;code&gt;&amp;amp;&lt;/code&gt; を付け忘れてしまって配列の値が正しくないことに数日気がつかないということがありました。&lt;br&gt;
+その配列は4つのクラスをまたいでおり、どこで値がおかしくなっているのかをデバッグするのに大変時間がかかりました。&lt;/p&gt;
+&lt;h1 id=&#34;まとめ&#34;&gt;まとめ&lt;/h1&gt;
+&lt;p&gt;配列を引数に渡すメソッドを定義するときに、参照渡しか値渡しにするべきか迷ったら「値渡し」を選択した方がいいと思います。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>iOS で、要素をタッチしてもクリックイベントが発生しない問題への対処</title>
+      <link>https://shunsukekomuta.github.io/click-event-does-not-work/</link>
+      <pubDate>Thu, 15 Jun 2017 20:09:35 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.github.io/click-event-does-not-work/</guid>
+      <description>&lt;p&gt;業務でウェブサイトを作成していて、iPhone、iPad でフローティングの枠外を押した時に閉じる処理が作用しないという問題に遭遇しました。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(document).&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+  &lt;span style=&#34;color:#75715e&#34;&gt;// ポップアップを閉じる処理
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;原因&#34;&gt;原因&lt;/h1&gt;
+&lt;p&gt;HTML で通常クリックが期待される要素以外ではイベントが発生しない。
+そのため、クリックイベントを書いてもその処理が行われることがない。&lt;/p&gt;
+&lt;h2 id=&#34;クリックされることが期待される要素&#34;&gt;クリックされることが期待される要素&lt;/h2&gt;
+&lt;p&gt;button 要素、a 要素など&lt;/p&gt;
+&lt;h2 id=&#34;クリックされることが期待されない要素&#34;&gt;クリックされることが期待されない要素&lt;/h2&gt;
+&lt;p&gt;div 要素、span 要素、p 要素 など&lt;/p&gt;
+&lt;h1 id=&#34;解決方法&#34;&gt;解決方法&lt;/h1&gt;
+&lt;p&gt;下記の方法だけではありませんが、最も簡単と思われる方法を２つ挙げます。&lt;/p&gt;
+&lt;h2 id=&#34;1-cursorpointer-のスタイルを指定&#34;&gt;1. cursor:pointer のスタイルを指定&lt;/h2&gt;
+&lt;p&gt;こちらは問題を調べたらすぐに出てきた解決方法です。
+下記の理由からこちらの解決方法をとることはやめました。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;実際には見えないが、カーソルが常に指型カーソルになっていると思うと、個人的には気持ち悪い&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;style&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+.&lt;span style=&#34;color:#a6e22e&#34;&gt;container&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;cursor&lt;/span&gt;:&lt;span style=&#34;color:#66d9ef&#34;&gt;pointer&lt;/span&gt;;
+}
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;style&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;2-空のイベントハンドラを指定&#34;&gt;2. 空のイベントハンドラを指定&lt;/h2&gt;
+&lt;p&gt;html または js にどちらに書いてもかまいませんが、 &lt;strong&gt;body よりも下の要素&lt;/strong&gt; に指定してください。&lt;/p&gt;
+&lt;h3 id=&#34;html-に記述する&#34;&gt;html に記述する&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;container&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;onclick&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;js-に記述する&#34;&gt;js に記述する&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.container&amp;#39;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処</title>
+      <link>https://shunsukekomuta.github.io/conflicted-sublime-keymap/</link>
+      <pubDate>Sun, 11 Jun 2017 23:18:12 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.github.io/conflicted-sublime-keymap/</guid>
+      <description>&lt;p&gt;Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処方法を紹介します。&lt;br&gt;
+以下の記事の中でも言っているように、User のキーマップを編集して優先させたいキーマップを無効にするという方法もあるが、これでは別のアプリケーションのキーマップ使えなくなってしまいます。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;    [
+        { &amp;quot;keys&amp;quot;: [&amp;quot;ctrl+g&amp;quot;], &amp;quot;command&amp;quot;: &amp;quot;unbound&amp;quot; }
+    ]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;この設定を行うことで、 Ctrl+G を押しても行番号指定ジャンプのためのオーバーレイは表示されなくなる。しかし、 SKK 側には Ctrl+G は伝達されない。依然、キーマップ上でその入力は Sublime Text のものとして登録されているためだ。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://qiita.com/risou/items/e509ab9cd6ad92988021&#34;&gt;Mac の Sublime Text 3 で SKK を快適に使う - Qiita&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;この記事では、Default キーマップ用のファイルを作成するという方法で解決をしていますが、「直接編集できないの?」ということで調べてみました。&lt;/p&gt;
+&lt;p&gt;以下のようにしてファイルパスを確認して、ファイルを直接編集しようとしたのですが、このファイルパスにファイルは存在しませんでした。&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;https://shunsukekomuta.github.io/img/Default%20%28OSX%29.sublime-keymap.png&#34;/&gt; &lt;figcaption&gt;
+            &lt;h4&gt;Default (OSX).sublime-keymap&lt;/h4&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Sublimte Text 3 のフォーラムでのやり取りを見ると、実際のファイルは &lt;code&gt;/Applications/Sublime Text 3.app/Contents/MacOS/Packages/Default.sublime-package&lt;/code&gt; にバンドルされているようです。&lt;/p&gt;
+&lt;div class=&#34;embed&#34;&gt;
+    &lt;iframe type=&#34;text/html&#34; width=&#34;100%&#34; height=&#34;180&#34; src=&#34;https://hatenablog-parts.com/embed?url=https%3a%2f%2fforum.sublimetext.com%2ft%2fst3-where-is-default-osx-sublime-keymap-located%2f10757&#34; allowfullscreen frameborder=&#34;0&#34;&gt;
+    &lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;Package ファイルを編集するには、 &lt;a href=&#34;https://github.com/skuroda/PackageResourceViewer&#34;&gt;PackageResourceViewer&lt;/a&gt; を使用します。&lt;/p&gt;
+&lt;p&gt;まずは、PackageResourceViewer を Package Control からインストールします。そして、Command Palette から以下の手順を実行すると、Default (OSX).sublime-keymap が開きます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;PackageResourceViewer: Open Resource &amp;gt; Default &amp;gt; Default (OSX).sublime-keymap
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Default (OSX).sublime-keymap が編集できるようになっているので、別のアプリケーションで優先させたいキーマップをコメントアウトするか削除します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  // { &amp;quot;keys&amp;quot;: [&amp;quot;ctrl+g&amp;quot;], &amp;quot;command&amp;quot;: &amp;quot;show_overlay&amp;quot;, &amp;quot;args&amp;quot;: {&amp;quot;overlay&amp;quot;: &amp;quot;goto&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;:&amp;quot;} },
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>vimで複数選択を可能にするプラグイン</title>
+      <link>https://shunsukekomuta.github.io/vim-multiple-cursor/</link>
+      <pubDate>Sun, 04 Jun 2017 18:20:18 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.github.io/vim-multiple-cursor/</guid>
+      <description>&lt;h2 id=&#34;マルチカーソル&#34;&gt;マルチカーソル&lt;/h2&gt;
+&lt;p&gt;Sublime Textの機能。
+複数の文字列を同時に選択し、全ての選択箇所を一度に編集できる機能です。
+これがあるから離れられない人も多いはず。&lt;/p&gt;
+&lt;h2 id=&#34;vim-multiple-cursors&#34;&gt;vim-multiple-cursors&lt;/h2&gt;
+&lt;p&gt;そんな便利なものvimにもありました。作成者の方には本当に感謝です。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/terryma/vim-multiple-cursors/blob/master/assets/example1.gif?raw=true&#34; alt=&#34;Qiita&#34;&gt;
+&lt;a href=&#34;https://github.com/terryma/vim-multiple-cursors&#34;&gt;terryma/vim-multiple-cursorsから引用&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;問題点&#34;&gt;問題点&lt;/h2&gt;
+&lt;p&gt;リファクタリングをする際などにとても便利なプラグインですが、問題点があります。&lt;/p&gt;
+&lt;p&gt;まず ctrl+n で複数行選択したい単語を選択するのですが、
+その選択区間は単語単位に限られていて、選択後に単語の末尾以外に選択範囲を変えると複数選択を実行できません。&lt;/p&gt;
+&lt;p&gt;つまり &lt;code&gt;.&lt;/code&gt; や &lt;code&gt;-&amp;gt;&lt;/code&gt; を間に挟んだ選択や、 &lt;code&gt;(&lt;/code&gt; を含んだ複数選択を実行できないことがあります。&lt;/p&gt;
+&lt;h2 id=&#34;解決策&#34;&gt;解決策&lt;/h2&gt;
+&lt;p&gt;最初の文字列選択をデフォルトのビジュアルモードで行うと上手く動作します。&lt;/p&gt;
+&lt;p&gt;私は以下のように単語を選択します。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;単語の先頭にカーソル : &lt;code&gt;ve&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;単語の途中にカーソル : &lt;code&gt;viw&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;de&lt;/code&gt; や &lt;code&gt;diw&lt;/code&gt; 、 &lt;code&gt;ce&lt;/code&gt; や &lt;code&gt;ciw&lt;/code&gt; などにも応用が効くのでvimに出来るだけ慣れるためにも使っています。&lt;/p&gt;
+&lt;h2 id=&#34;謝辞&#34;&gt;謝辞&lt;/h2&gt;
+&lt;p&gt;最後まで読んでいただき、誠にありがとうございます。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>コミット履歴の改善に役立つ git rebase -i 5つの使い方</title>
+      <link>https://shunsukekomuta.github.io/git-rebase-i/</link>
+      <pubDate>Sun, 04 Jun 2017 16:55:36 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.github.io/git-rebase-i/</guid>
+      <description>&lt;p&gt;今までrebaseは、基本的に&lt;code&gt;git rebase origin/master&lt;/code&gt;しか使ってきませんでした。
+リモートにpushされていると何かと悪さをするやつだと思って、あまり関心がありませんでした。&lt;/p&gt;
+&lt;p&gt;しかしローカルで作業している限り便利なものだと知ったので、&lt;code&gt;git rebase -i&lt;/code&gt; の機能の一部分をまとめました。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;git version 2.6.4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;1-コミット名の編集&#34;&gt;1. コミット名の編集&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;r&lt;/code&gt; に変更します&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i HEAD~~
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 変更前
+pick 26ef747 A
+
+# 変更後
+r 26ef747 A
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;テキストエディタを終了するとすぐに、コミットの編集画面が表示されるので、コミット名を変更します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  A
+
+  # Please enter the commit message for your changes. Lines starting
+  # with &#39;#&#39; will be ignored, and an empty message aborts the commit.
+  #
+  # Date:      Tue Mar 22 22:49:23 2016 +0900
+  #
+  # interactive rebase in progress; onto f98d1ca
+  # Last command done (1 command done):
+  #    r 2f4e52f A
+  # No commands remaining.
+  # You are currently editing a commit while rebasing branch &#39;master&#39; on &#39;f98d1ca&#39;.
+  #
+
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-コミットの編集&#34;&gt;2. コミットの編集&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;e&lt;/code&gt; に変更します&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.backlog.jp/git-guide/stepup/stepup7_6.html&#34;&gt;6. rebase -i でコミットを修正する【チュートリアル3 コミットを書き換えよう！】 _ サルでもわかるGit入門 〜バージョン管理を使いこなそう〜 _ どこでもプロジェクト管理バックログ&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;補足&#34;&gt;補足&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;git  commit --amend&lt;/code&gt;実行時にコミット名も変更することが出来ます。&lt;/p&gt;
+&lt;h1 id=&#34;3-コミットをまとめる&#34;&gt;3. コミットをまとめる&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;s&lt;/code&gt; に変更します&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i HEAD~~
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 変更前
+pick 195172f A
+pick c064177 B
+pick 0a1df4a C
+pick 36d169f D
+
+# 変更後
+pick 195172f A
+s c064177 B
+pick 0a1df4a C
+pick 36d169f D
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;コンフリクトが起きた場合、コンフリクト部分を修正後に下記を実行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add path/to/dir path/to/file
+$ git rebase --continue
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;補足-1&#34;&gt;補足&lt;/h2&gt;
+&lt;p&gt;squash は 直前のコミットにまとめます。
+上記のrebaseでは、以下のようなコミットを&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;A---B---C---D
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;コミットBの&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;s&lt;/code&gt;に変更し&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;AB&#39;---C---D
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;のようにします。&lt;/p&gt;
+&lt;p&gt;###合わせ技
+以下の様なコミットがあって、&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;A---B---C---D  master
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以下のようにしたい時は、&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;AC&#39;---B---D  master
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;「コミットの順番を変更する」を組み合わせることでできます。&lt;/p&gt;
+&lt;h1 id=&#34;4-コミットの削除&#34;&gt;4. コミットの削除&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;d&lt;/code&gt; に変更します&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i HEAD~~
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 変更前
+pick a42f9e0 B
+
+# 変更後
+d a42f9e0 B
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;コンフリクトが起きた場合、コンフリクト部分を修正後に下記を実行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add path/to/dir path/to/file
+$ git rebase --continue
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;5-コミットの順番の変更&#34;&gt;5. コミットの順番の変更&lt;/h1&gt;
+&lt;p&gt;文字通りコミットの順番を変更します。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i HEAD~~
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 変更前
+pick 26ef747 A
+pick a42f9e0 B
+
+# 変更後
+pick a42f9e0 B
+pick 26ef747 A
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;コンフリクトが起きた場合、コンフリクト部分を修正後に下記を実行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add path/to/dir path/to/file
+$ git rebase --continue
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;#rebase で行った修正を取り消したい場合&lt;/p&gt;
+&lt;p&gt;rebaseを行った直後であれば以下のコマンドで戻せます。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$  git reset --hard ORIG_HEAD
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;もっと前に戻したければreflogから、戻したいコミットIDを取得します。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git reflog
+$ git reset --hard commit_id
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;tips&#34;&gt;Tips&lt;/h1&gt;
+&lt;p&gt;下記のコマンドはmasterとカレントブランチの分岐点のコミットIDを表示します。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git show-branch --merge-base master HEAD
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;このコマンドとrebase -i を組み合わせて&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i &lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;git show-branch --merge-base master HEAD&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;とやると、作業ブランチのコミットだけを表示できるので便利。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道</title>
+      <link>https://shunsukekomuta.github.io/server-is-already-running/</link>
+      <pubDate>Thu, 01 Jun 2017 14:21:45 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.github.io/server-is-already-running/</guid>
+      <description>&lt;p&gt;本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。
+ただ、Rails × Dockerで開発する人より多くの人に見てもらえることを目的として書きました。
+Rails の A server is already running と聞いて「ああ、あれのことか」と思った方は本記事は読み飛ばしてください。&lt;/p&gt;
+&lt;h2 id=&#34;docker-composeyml&#34;&gt;docker-compose.yml&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;db:
+  image: postgres
+web:
+  build: .
+  # コンテナ立ち上げ時に開発用サーバを起動
+  command: bundle exec rails s -p 3000 -b &#39;0.0.0.0&#39;
+  volumes:
+    - .:/myapp
+  ports:
+    - &amp;quot;3000:3000&amp;quot;
+  links:
+    - db
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;a-server-is-already-running&#34;&gt;A server is already running.&lt;/h1&gt;
+&lt;p&gt;コンテナを立ち上げますが、失敗しています。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ docker-compose up -d
+$ docker-compose ps
+        Name                       Command               State     Ports
+--------------------------------------------------------------------------
+railsprojectdocker_db_1    /docker-entrypoint.sh postgres   Up       5432/tcp
+railsprojectdocker_web_1   bundle exec rails s -p 300 ...   Exit 1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以下のコマンドでログを確認します。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker-compose logs
+~
+web_1 | &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;gt; Booting WEBrick
+web_1 | &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;gt; Rails 4.2.4 application starting in development on http://0.0.0.0:3000
+web_1 | &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;gt; Run &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;rails server -h&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; more startup options
+web_1 | &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;gt; Ctrl-C to shutdown server
+web_1 | A server is already running. Check /myapp/rails-app/tmp/pids/server.pid.
+web_1 | Exiting
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;問題と対処&#34;&gt;問題と対処&lt;/h1&gt;
+&lt;p&gt;Rails に付随しているWEBサーバが正常に終了していない。
+&lt;code&gt;docker-compose kill&lt;/code&gt; や 何かの拍子でコンテナが終了すると起きてしまいます。&lt;/p&gt;
+&lt;h2 id=&#34;serverpid-に-pid-の情報が保持されたまま終了&#34;&gt;server.pid に pid の情報が保持されたまま終了&lt;/h2&gt;
+&lt;p&gt;pid は、開発用WEBサーバを起動するときに tmp/pids/server.pid に書き込まれ、終了するときに削除されます。
+server.pid に pid が書かれていると開発用WEBサーバが起動中（プロセスがある）と判断されてしまいます。&lt;/p&gt;
+&lt;h2 id=&#34;pid-の情報を削除&#34;&gt;pid の情報を削除&lt;/h2&gt;
+&lt;p&gt;server.pid に書かれた pid を削除する、もしくは server.pid を削除します。
+server.pid を削除しても、&lt;code&gt;rails server&lt;/code&gt;を実行した時に自動で作成されます。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ rm railsproject-ui/tmp/pids/server.pid
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
   </channel>
