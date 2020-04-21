@@ -1,49 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>php on Shunsuke Komuta</title>
-    <link>https://shunsukekomuta.github.io/tags/php/</link>
-    <description>Shunsuke Komuta (php)</description>
+    <title>php on Komuta&#39;s Blog</title>
+    <link>https://shunsukekomuta.com/tags/php/</link>
+    <description>Recent content in php on Komuta&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Fri, 16 Jun 2017 11:00:46 +0900</lastBuildDate>
     
-    <atom:link href="https://shunsukekomuta.github.io/tags/php/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://shunsukekomuta.com/tags/php/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PHP の配列は参照渡しにするべきか？値渡しにするべきか？</title>
-      <link>https://shunsukekomuta.github.io/call-by-reference-or-value/</link>
+      <link>https://shunsukekomuta.com/call-by-reference-or-value/</link>
       <pubDate>Fri, 16 Jun 2017 11:00:46 +0900</pubDate>
       
-      <guid>https://shunsukekomuta.github.io/call-by-reference-or-value/</guid>
-      <description>&lt;p&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; をたくさん使って参照渡しをしているコードを見ます。&lt;br&gt;
-参照渡しをした方がいいのか、値渡しにしてメソッドに結果値を返させるのではどちらが良いかということを考えてみたいと思います。&lt;/p&gt;
-&lt;h1 id=&#34;phpの仕様&#34;&gt;PHPの仕様&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;配列は値&lt;/li&gt;
-&lt;li&gt;デフォルトは値渡し&lt;/li&gt;
-&lt;li&gt;パラメータに&amp;amp;を付けると参照渡しができる&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;参照渡しと値渡しのメリットデメリット&#34;&gt;参照渡しと値渡しのメリット・デメリット&lt;/h1&gt;
-&lt;h2 id=&#34;参照渡し&#34;&gt;参照渡し&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;java や C++ の参照渡しと同じ感覚でコーディングできる&lt;/li&gt;
-&lt;li&gt;&amp;amp;を書き忘れると呼び出しではデータが変わらない、またそれに気が付きにくい&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;値渡し&#34;&gt;値渡し&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; を書き忘れるというヒューマンエラーが起きない&lt;/li&gt;
-&lt;li&gt;返却される値を見ればいいので、デバッグが楽&lt;/li&gt;
-&lt;li&gt;必ず値を返さなければならない&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;観点&#34;&gt;観点&lt;/h1&gt;
-&lt;p&gt;ここで注目したいのが、値渡しとしてメソッドを定義すれば &lt;code&gt;&amp;amp;&lt;/code&gt; を書き忘れるというヒューマンエラーが起きないということです。&lt;br&gt;
-先日リファクタリングをしていてメソッドの抽出を行った際、&lt;code&gt;&amp;amp;&lt;/code&gt; を付け忘れてしまって配列の値が正しくないことに数日気がつかないということがありました。&lt;br&gt;
-その配列は4つのクラスをまたいでおり、どこで値がおかしくなっているのかをデバッグするのに大変時間がかかりました。&lt;/p&gt;
-&lt;h1 id=&#34;まとめ&#34;&gt;まとめ&lt;/h1&gt;
-&lt;p&gt;配列を引数に渡すメソッドを定義するときに、参照渡しか値渡しにするべきか迷ったら「値渡し」を選択した方がいいと思います。&lt;/p&gt;
-</description>
+      <guid>https://shunsukekomuta.com/call-by-reference-or-value/</guid>
+      <description>&amp;amp; をたくさん使って参照渡しをしているコードを見ます。 参照渡しをした方がいいのか、値渡しにしてメソッドに結果値を返させるのではどちらが良いかと</description>
     </item>
     
   </channel>

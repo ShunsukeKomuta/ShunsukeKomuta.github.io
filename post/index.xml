@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Komuta&#39;s Blog</title>
+    <link>https://shunsukekomuta.com/post/</link>
+    <description>Recent content in Posts on Komuta&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 27 Nov 2017 12:00:46 +0900</lastBuildDate>
+    
+	<atom:link href="https://shunsukekomuta.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Laravel - テーブルに日本語を含むカラムに対して、ミューテーターを使用したい時</title>
+      <link>https://shunsukekomuta.com/use-mutator-with-the-column-contains-double-byte-character-in-laravel/</link>
+      <pubDate>Mon, 27 Nov 2017 12:00:46 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/use-mutator-with-the-column-contains-double-byte-character-in-laravel/</guid>
+      <description>結論から言うと、モデルに対して以下の2つを行う。 ただし、日本語名をそのまま使用するという訳にはいかない。 新しくアクセッサーを作成する 属性名を</description>
+    </item>
+    
+    <item>
+      <title>「自分の中に毒を持て」を読んで、ショックを受けた話</title>
+      <link>https://shunsukekomuta.com/201708282242/</link>
+      <pubDate>Mon, 28 Aug 2017 22:42:13 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/201708282242/</guid>
+      <description>最近本を読んでないなぁと思ってふと手にとった本が、「芸術は爆発だ!」で有名な岡本太郎のこの本でした。 ブログをもう3ヶ月も書いていないのに、書</description>
+    </item>
+    
+    <item>
+      <title>PHP の配列は参照渡しにするべきか？値渡しにするべきか？</title>
+      <link>https://shunsukekomuta.com/call-by-reference-or-value/</link>
+      <pubDate>Fri, 16 Jun 2017 11:00:46 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/call-by-reference-or-value/</guid>
+      <description>&amp;amp; をたくさん使って参照渡しをしているコードを見ます。 参照渡しをした方がいいのか、値渡しにしてメソッドに結果値を返させるのではどちらが良いかと</description>
+    </item>
+    
+    <item>
+      <title>iOS で、要素をタッチしてもクリックイベントが発生しない問題への対処</title>
+      <link>https://shunsukekomuta.com/click-event-does-not-work/</link>
+      <pubDate>Thu, 15 Jun 2017 20:09:35 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/click-event-does-not-work/</guid>
+      <description>業務でウェブサイトを作成していて、iPhone、iPad でフローティングの枠外を押した時に閉じる処理が作用しないという問題に遭遇しました。 $(document).on(&amp;#39;click&amp;#39;,</description>
+    </item>
+    
+    <item>
+      <title>Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処</title>
+      <link>https://shunsukekomuta.com/conflicted-sublime-keymap/</link>
+      <pubDate>Sun, 11 Jun 2017 23:18:12 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/conflicted-sublime-keymap/</guid>
+      <description>Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処方法を紹介します。 以下の記事の中でも言っているように、User のキーマップを編集</description>
+    </item>
+    
+    <item>
+      <title>vimで複数選択を可能にするプラグイン</title>
+      <link>https://shunsukekomuta.com/vim-multiple-cursor/</link>
+      <pubDate>Sun, 04 Jun 2017 18:20:18 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/vim-multiple-cursor/</guid>
+      <description>マルチカーソル Sublime Textの機能。 複数の文字列を同時に選択し、全ての選択箇所を一度に編集できる機能です。 これがあるから離れられない人も多いはず</description>
+    </item>
+    
+    <item>
+      <title>コミット履歴の改善に役立つ git rebase -i 5つの使い方</title>
+      <link>https://shunsukekomuta.com/git-rebase-i/</link>
+      <pubDate>Sun, 04 Jun 2017 16:55:36 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/git-rebase-i/</guid>
+      <description>今までrebaseは、基本的にgit rebase origin/masterしか使ってきませんでした。 リモートにpushされていると何かと悪さをするやつ</description>
+    </item>
+    
+    <item>
+      <title>Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道</title>
+      <link>https://shunsukekomuta.com/server-is-already-running/</link>
+      <pubDate>Thu, 01 Jun 2017 14:21:45 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/server-is-already-running/</guid>
+      <description>本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。 ただ、Rails × Dockerで開発</description>
+    </item>
+    
+  </channel>
+</rss>

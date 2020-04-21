@@ -1,72 +1,109 @@
-<!DOCTYPE html>
 <html>
 <head>
-    
-        
-<meta charset="utf-8">
-<meta name="HandheldFriendly" content="True">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="no-referrer-when-downgrade">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道  - Shunsuke Komuta</title>
-<meta name="description" content="Anubis is a simple minimalist theme for Hugo blog engine.">
-
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://shunsukekomuta.github.io/rss/">
-
-<link rel="icon" type="image/x-icon" href="https://shunsukekomuta.github.io/favicon.ico">
-<link rel="apple-touch-icon-precomposed" href="https://shunsukekomuta.github.io/favicon.png">
-
-<link rel="stylesheet" href="https://shunsukekomuta.github.io/css/style.css?rnd=1587463980" />
-
-<meta property="og:title" content="Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道" />
-<meta property="og:description" content="本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。 ただ、Rails × Dockerで開発" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://shunsukekomuta.github.io/server-is-already-running/" />
-<meta property="article:published_time" content="2017-06-01T14:21:45+09:00" />
-<meta property="article:modified_time" content="2017-06-01T14:21:45+09:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道"/>
-<meta name="twitter:description" content="本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。 ただ、Rails × Dockerで開発"/>
-
-
-
-
-
+    <title>Komuta&#39;s Blog - Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道 </title>
 
     
-</head>
+    
+    <meta content="rails" name="keywords">
+    
+    <meta content="Komuta&#39;s Blog - 本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。 ただ、Rails × Dockerで開発" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" async
+        src="/mathjax-3.0.0/tex-mml-chtml.js">
+    </script>
+    
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/self/css/default.css">
+    <script src="/layui/layui.js"></script>
+
+
+    <link rel="stylesheet" async href="/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="/self/css/gallery.css">
+    <link rel="stylesheet" async href="/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/self/js/lazysizes.min.js" async></script></head>
+
 <body>
-    <div class="container">
-        <header> 
-            
-                <h1 class="site-header">
-    <a href="https://shunsukekomuta.github.io/">Shunsuke Komuta</a>
-</h1>
-<nav>
     
-    
-    <a class="" href="/about/" title="">About</a>
-    
-    <a class="" href="/categories/" title="">Categories</a>
-    
-    <a class="" href="/tags/" title="">Tags</a>
-    
-    <a class="" href="/posts/" title="">Archive</a>
-    
-</nav>
+    <header class="layui-header layui-bg-cyan">
 
-            
-        </header>
-        <main>
-            
+    
+    
+    <a class="nav-self-logo" href="/">
+        Komuta&#39;s Blog
+    </a>
 
-    <article class="post">
-        <header>
-            <h1>Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道</h1>
-        </header>
-        <div class="content">
-            <p>本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="/post/">Posts</a></li>
+        
+
+        
+            
+                <li class="layui-nav-item" id="nav_big"><a href="/about/">About</a></li>
+            
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="/post/">Posts</a></dd>
+                
+
+                
+                    
+                        <dd><a href="/about/">About</a></dd>
+                    
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="layui-elem-quote markdown-body single-title" >
+                    <h1>Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <span>2017-06-01</span>
+
+    
+    
+        <a href="/tags/rails/">
+            <span class="layui-badge" style="vertical-align: 2px;">rails</span>
+        </a>
+    
+</h3>
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <p>本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。
 ただ、Rails × Dockerで開発する人より多くの人に見てもらえることを目的として書きました。
 Rails の A server is already running と聞いて「ああ、あれのことか」と思った方は本記事は読み飛ばしてください。</p>
 <h2 id="docker-composeyml">docker-compose.yml</h2>
@@ -109,42 +146,19 @@ server.pid に pid が書かれていると開発用WEBサーバが起動中（�
 <p>server.pid に書かれた pid を削除する、もしくは server.pid を削除します。
 server.pid を削除しても、<code>rails server</code>を実行した時に自動で作成されます。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rm railsproject-ui/tmp/pids/server.pid
-</code></pre></div>
+</code></pre></div></div>
+            </div>
         </div>
-        <div class="article-info">
-    
-        <div class="article-date">2017-06-01</div>
-    
-    <div class="article-taxonomies">
-        
-            <ul class="article-categories">
-                
-                    <li><a href="https://shunsukekomuta.github.io/categories/rails">rails</a></li>
-                
-            </ul>
-            
-            
-                <ul class="article-tags">
-                    
-                        <li><a href="https://shunsukekomuta.github.io/tags/rails">#rails</a></li>
-                    
-                </ul>
-        
     </div>
 </div>
 
-    </article>
+
+        </div><footer>
     
-
-
-        </main>
-        <footer>
-            
-                <p>© Shunsuke Komuta, 2020<br>
-Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
-</p>
-            
-        </footer>
+    
+    <div class="layui-container">
+        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
     </div>
+</footer>
 </body>
 </html>

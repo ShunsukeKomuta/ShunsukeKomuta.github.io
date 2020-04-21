@@ -1,127 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>git on Shunsuke Komuta</title>
-    <link>https://shunsukekomuta.github.io/categories/git/</link>
-    <description>Shunsuke Komuta (git)</description>
+    <title>git on Komuta&#39;s Blog</title>
+    <link>https://shunsukekomuta.com/categories/git/</link>
+    <description>Recent content in git on Komuta&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Sun, 04 Jun 2017 16:55:36 +0900</lastBuildDate>
     
-    <atom:link href="https://shunsukekomuta.github.io/categories/git/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://shunsukekomuta.com/categories/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>コミット履歴の改善に役立つ git rebase -i 5つの使い方</title>
-      <link>https://shunsukekomuta.github.io/git-rebase-i/</link>
+      <link>https://shunsukekomuta.com/git-rebase-i/</link>
       <pubDate>Sun, 04 Jun 2017 16:55:36 +0900</pubDate>
       
-      <guid>https://shunsukekomuta.github.io/git-rebase-i/</guid>
-      <description>&lt;p&gt;今までrebaseは、基本的に&lt;code&gt;git rebase origin/master&lt;/code&gt;しか使ってきませんでした。
-リモートにpushされていると何かと悪さをするやつだと思って、あまり関心がありませんでした。&lt;/p&gt;
-&lt;p&gt;しかしローカルで作業している限り便利なものだと知ったので、&lt;code&gt;git rebase -i&lt;/code&gt; の機能の一部分をまとめました。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;git version 2.6.4&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;1-コミット名の編集&#34;&gt;1. コミット名の編集&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;r&lt;/code&gt; に変更します&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i HEAD~~
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 変更前
-pick 26ef747 A
-
-# 変更後
-r 26ef747 A
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;テキストエディタを終了するとすぐに、コミットの編集画面が表示されるので、コミット名を変更します。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  A
-
-  # Please enter the commit message for your changes. Lines starting
-  # with &#39;#&#39; will be ignored, and an empty message aborts the commit.
-  #
-  # Date:      Tue Mar 22 22:49:23 2016 +0900
-  #
-  # interactive rebase in progress; onto f98d1ca
-  # Last command done (1 command done):
-  #    r 2f4e52f A
-  # No commands remaining.
-  # You are currently editing a commit while rebasing branch &#39;master&#39; on &#39;f98d1ca&#39;.
-  #
-
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-コミットの編集&#34;&gt;2. コミットの編集&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;e&lt;/code&gt; に変更します&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.backlog.jp/git-guide/stepup/stepup7_6.html&#34;&gt;6. rebase -i でコミットを修正する【チュートリアル3 コミットを書き換えよう！】 _ サルでもわかるGit入門 〜バージョン管理を使いこなそう〜 _ どこでもプロジェクト管理バックログ&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;補足&#34;&gt;補足&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;git  commit --amend&lt;/code&gt;実行時にコミット名も変更することが出来ます。&lt;/p&gt;
-&lt;h1 id=&#34;3-コミットをまとめる&#34;&gt;3. コミットをまとめる&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;s&lt;/code&gt; に変更します&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i HEAD~~
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 変更前
-pick 195172f A
-pick c064177 B
-pick 0a1df4a C
-pick 36d169f D
-
-# 変更後
-pick 195172f A
-s c064177 B
-pick 0a1df4a C
-pick 36d169f D
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;コンフリクトが起きた場合、コンフリクト部分を修正後に下記を実行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add path/to/dir path/to/file
-$ git rebase --continue
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;補足-1&#34;&gt;補足&lt;/h2&gt;
-&lt;p&gt;squash は 直前のコミットにまとめます。
-上記のrebaseでは、以下のようなコミットを&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;A---B---C---D
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;コミットBの&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;s&lt;/code&gt;に変更し&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;AB&#39;---C---D
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;のようにします。&lt;/p&gt;
-&lt;p&gt;###合わせ技
-以下の様なコミットがあって、&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;A---B---C---D  master
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以下のようにしたい時は、&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;AC&#39;---B---D  master
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;「コミットの順番を変更する」を組み合わせることでできます。&lt;/p&gt;
-&lt;h1 id=&#34;4-コミットの削除&#34;&gt;4. コミットの削除&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;pick&lt;/code&gt; を &lt;code&gt;d&lt;/code&gt; に変更します&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i HEAD~~
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 変更前
-pick a42f9e0 B
-
-# 変更後
-d a42f9e0 B
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;コンフリクトが起きた場合、コンフリクト部分を修正後に下記を実行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add path/to/dir path/to/file
-$ git rebase --continue
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;5-コミットの順番の変更&#34;&gt;5. コミットの順番の変更&lt;/h1&gt;
-&lt;p&gt;文字通りコミットの順番を変更します。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i HEAD~~
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;テキストエディタが開いて、HEADからHEAD~~までのコミット表示されるので、以下のように変更します。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 変更前
-pick 26ef747 A
-pick a42f9e0 B
-
-# 変更後
-pick a42f9e0 B
-pick 26ef747 A
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;コンフリクトが起きた場合、コンフリクト部分を修正後に下記を実行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add path/to/dir path/to/file
-$ git rebase --continue
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;#rebase で行った修正を取り消したい場合&lt;/p&gt;
-&lt;p&gt;rebaseを行った直後であれば以下のコマンドで戻せます。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$  git reset --hard ORIG_HEAD
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;もっと前に戻したければreflogから、戻したいコミットIDを取得します。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git reflog
-$ git reset --hard commit_id
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;tips&#34;&gt;Tips&lt;/h1&gt;
-&lt;p&gt;下記のコマンドはmasterとカレントブランチの分岐点のコミットIDを表示します。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git show-branch --merge-base master HEAD
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;このコマンドとrebase -i を組み合わせて&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase -i &lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;git show-branch --merge-base master HEAD&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;とやると、作業ブランチのコミットだけを表示できるので便利。&lt;/p&gt;
-</description>
+      <guid>https://shunsukekomuta.com/git-rebase-i/</guid>
+      <description>今までrebaseは、基本的にgit rebase origin/masterしか使ってきませんでした。 リモートにpushされていると何かと悪さをするやつ</description>
     </item>
     
   </channel>

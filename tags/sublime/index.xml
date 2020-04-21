@@ -1,50 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>sublime on Shunsuke Komuta</title>
-    <link>https://shunsukekomuta.github.io/tags/sublime/</link>
-    <description>Shunsuke Komuta (sublime)</description>
+    <title>sublime on Komuta&#39;s Blog</title>
+    <link>https://shunsukekomuta.com/tags/sublime/</link>
+    <description>Recent content in sublime on Komuta&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Sun, 11 Jun 2017 23:18:12 +0900</lastBuildDate>
     
-    <atom:link href="https://shunsukekomuta.github.io/tags/sublime/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://shunsukekomuta.com/tags/sublime/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処</title>
-      <link>https://shunsukekomuta.github.io/conflicted-sublime-keymap/</link>
+      <link>https://shunsukekomuta.com/conflicted-sublime-keymap/</link>
       <pubDate>Sun, 11 Jun 2017 23:18:12 +0900</pubDate>
       
-      <guid>https://shunsukekomuta.github.io/conflicted-sublime-keymap/</guid>
-      <description>&lt;p&gt;Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処方法を紹介します。&lt;br&gt;
-以下の記事の中でも言っているように、User のキーマップを編集して優先させたいキーマップを無効にするという方法もあるが、これでは別のアプリケーションのキーマップ使えなくなってしまいます。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;pre&gt;&lt;code&gt;    [
-        { &amp;quot;keys&amp;quot;: [&amp;quot;ctrl+g&amp;quot;], &amp;quot;command&amp;quot;: &amp;quot;unbound&amp;quot; }
-    ]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;この設定を行うことで、 Ctrl+G を押しても行番号指定ジャンプのためのオーバーレイは表示されなくなる。しかし、 SKK 側には Ctrl+G は伝達されない。依然、キーマップ上でその入力は Sublime Text のものとして登録されているためだ。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://qiita.com/risou/items/e509ab9cd6ad92988021&#34;&gt;Mac の Sublime Text 3 で SKK を快適に使う - Qiita&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;この記事では、Default キーマップ用のファイルを作成するという方法で解決をしていますが、「直接編集できないの?」ということで調べてみました。&lt;/p&gt;
-&lt;p&gt;以下のようにしてファイルパスを確認して、ファイルを直接編集しようとしたのですが、このファイルパスにファイルは存在しませんでした。&lt;/p&gt;
-&lt;figure&gt;
-    &lt;img src=&#34;https://shunsukekomuta.github.io/img/Default%20%28OSX%29.sublime-keymap.png&#34;/&gt; &lt;figcaption&gt;
-            &lt;h4&gt;Default (OSX).sublime-keymap&lt;/h4&gt;
-        &lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Sublimte Text 3 のフォーラムでのやり取りを見ると、実際のファイルは &lt;code&gt;/Applications/Sublime Text 3.app/Contents/MacOS/Packages/Default.sublime-package&lt;/code&gt; にバンドルされているようです。&lt;/p&gt;
-&lt;div class=&#34;embed&#34;&gt;
-    &lt;iframe type=&#34;text/html&#34; width=&#34;100%&#34; height=&#34;180&#34; src=&#34;https://hatenablog-parts.com/embed?url=https%3a%2f%2fforum.sublimetext.com%2ft%2fst3-where-is-default-osx-sublime-keymap-located%2f10757&#34; allowfullscreen frameborder=&#34;0&#34;&gt;
-    &lt;/iframe&gt;
-&lt;/div&gt;
-&lt;p&gt;Package ファイルを編集するには、 &lt;a href=&#34;https://github.com/skuroda/PackageResourceViewer&#34;&gt;PackageResourceViewer&lt;/a&gt; を使用します。&lt;/p&gt;
-&lt;p&gt;まずは、PackageResourceViewer を Package Control からインストールします。そして、Command Palette から以下の手順を実行すると、Default (OSX).sublime-keymap が開きます。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;PackageResourceViewer: Open Resource &amp;gt; Default &amp;gt; Default (OSX).sublime-keymap
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Default (OSX).sublime-keymap が編集できるようになっているので、別のアプリケーションで優先させたいキーマップをコメントアウトするか削除します。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  // { &amp;quot;keys&amp;quot;: [&amp;quot;ctrl+g&amp;quot;], &amp;quot;command&amp;quot;: &amp;quot;show_overlay&amp;quot;, &amp;quot;args&amp;quot;: {&amp;quot;overlay&amp;quot;: &amp;quot;goto&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;:&amp;quot;} },
-&lt;/code&gt;&lt;/pre&gt;</description>
+      <guid>https://shunsukekomuta.com/conflicted-sublime-keymap/</guid>
+      <description>Sublime Text3 で他のアプリケーションのキーマップを優先させたい時の対処方法を紹介します。 以下の記事の中でも言っているように、User のキーマップを編集</description>
     </item>
     
   </channel>

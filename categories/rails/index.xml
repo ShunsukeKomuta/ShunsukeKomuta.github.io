@@ -1,66 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>rails on Shunsuke Komuta</title>
-    <link>https://shunsukekomuta.github.io/categories/rails/</link>
-    <description>Shunsuke Komuta (rails)</description>
+    <title>rails on Komuta&#39;s Blog</title>
+    <link>https://shunsukekomuta.com/categories/rails/</link>
+    <description>Recent content in rails on Komuta&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Thu, 01 Jun 2017 14:21:45 +0900</lastBuildDate>
     
-    <atom:link href="https://shunsukekomuta.github.io/categories/rails/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://shunsukekomuta.com/categories/rails/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Rails アプリケーションを Docker を使って開発する、ほとんどの人が通る（であろう）道</title>
-      <link>https://shunsukekomuta.github.io/server-is-already-running/</link>
+      <link>https://shunsukekomuta.com/server-is-already-running/</link>
       <pubDate>Thu, 01 Jun 2017 14:21:45 +0900</pubDate>
       
-      <guid>https://shunsukekomuta.github.io/server-is-already-running/</guid>
-      <description>&lt;p&gt;本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。
-ただ、Rails × Dockerで開発する人より多くの人に見てもらえることを目的として書きました。
-Rails の A server is already running と聞いて「ああ、あれのことか」と思った方は本記事は読み飛ばしてください。&lt;/p&gt;
-&lt;h2 id=&#34;docker-composeyml&#34;&gt;docker-compose.yml&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;db:
-  image: postgres
-web:
-  build: .
-  # コンテナ立ち上げ時に開発用サーバを起動
-  command: bundle exec rails s -p 3000 -b &#39;0.0.0.0&#39;
-  volumes:
-    - .:/myapp
-  ports:
-    - &amp;quot;3000:3000&amp;quot;
-  links:
-    - db
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;a-server-is-already-running&#34;&gt;A server is already running.&lt;/h1&gt;
-&lt;p&gt;コンテナを立ち上げますが、失敗しています。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ docker-compose up -d
-$ docker-compose ps
-        Name                       Command               State     Ports
---------------------------------------------------------------------------
-railsprojectdocker_db_1    /docker-entrypoint.sh postgres   Up       5432/tcp
-railsprojectdocker_web_1   bundle exec rails s -p 300 ...   Exit 1
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以下のコマンドでログを確認します。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker-compose logs
-~
-web_1 | &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;gt; Booting WEBrick
-web_1 | &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;gt; Rails 4.2.4 application starting in development on http://0.0.0.0:3000
-web_1 | &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;gt; Run &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;rails server -h&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; more startup options
-web_1 | &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;gt; Ctrl-C to shutdown server
-web_1 | A server is already running. Check /myapp/rails-app/tmp/pids/server.pid.
-web_1 | Exiting
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;問題と対処&#34;&gt;問題と対処&lt;/h1&gt;
-&lt;p&gt;Rails に付随しているWEBサーバが正常に終了していない。
-&lt;code&gt;docker-compose kill&lt;/code&gt; や 何かの拍子でコンテナが終了すると起きてしまいます。&lt;/p&gt;
-&lt;h2 id=&#34;serverpid-に-pid-の情報が保持されたまま終了&#34;&gt;server.pid に pid の情報が保持されたまま終了&lt;/h2&gt;
-&lt;p&gt;pid は、開発用WEBサーバを起動するときに tmp/pids/server.pid に書き込まれ、終了するときに削除されます。
-server.pid に pid が書かれていると開発用WEBサーバが起動中（プロセスがある）と判断されてしまいます。&lt;/p&gt;
-&lt;h2 id=&#34;pid-の情報を削除&#34;&gt;pid の情報を削除&lt;/h2&gt;
-&lt;p&gt;server.pid に書かれた pid を削除する、もしくは server.pid を削除します。
-server.pid を削除しても、&lt;code&gt;rails server&lt;/code&gt;を実行した時に自動で作成されます。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ rm railsproject-ui/tmp/pids/server.pid
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <guid>https://shunsukekomuta.com/server-is-already-running/</guid>
+      <description>本記事は、A server is already running の対処です。これについては記事もたくさん存在していますし何も新しいことはありません。 ただ、Rails × Dockerで開発</description>
     </item>
     
   </channel>
