@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sip on Komuta&#39;s Blog</title>
+    <link>https://shunsukekomuta.com/tags/sip/</link>
+    <description>Recent content in sip on Komuta&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Wed, 22 Apr 2020 19:54:33 +0900</lastBuildDate>
+    
+	<atom:link href="https://shunsukekomuta.com/tags/sip/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>直線の方程式 y = ax &#43; b は「線形」ではない?</title>
+      <link>https://shunsukekomuta.com/202004221954/</link>
+      <pubDate>Wed, 22 Apr 2020 19:54:33 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/202004221954/</guid>
+      <description>皆さん、直線の方程式 y = ax + b は「線形」でないって知っていましたか? 僕は今まで知らずに使っていました(汗) 最近「計算機プログラムの構造と解釈</description>
+    </item>
+    
+  </channel>
+</rss>

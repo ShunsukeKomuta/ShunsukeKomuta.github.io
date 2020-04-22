@@ -1,0 +1,140 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Komuta&#39;s Blog - 直線の方程式 y = ax &#43; b は「線形」ではない? </title>
+
+    
+    
+    <meta content="sip, math, " name="keywords">
+    
+    <meta content="Komuta&#39;s Blog - 皆さん、直線の方程式 y = ax &#43; b は「線形」でないって知っていましたか? 僕は今まで知らずに使っていました(汗) 最近「計算機プログラムの構造と解釈" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" async
+        src="/mathjax-3.0.0/tex-mml-chtml.js">
+    </script>
+    
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/self/css/default.css">
+    <script src="/layui/layui.js"></script>
+
+
+    <link rel="stylesheet" async href="/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="/self/css/gallery.css">
+    <link rel="stylesheet" async href="/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/self/js/lazysizes.min.js" async></script></head>
+
+<body>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+    
+    <a class="nav-self-logo" href="/">
+        Komuta&#39;s Blog
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="/post/">Posts</a></li>
+        
+
+        
+            
+                <li class="layui-nav-item" id="nav_big"><a href="/about/">About</a></li>
+            
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="/post/">Posts</a></dd>
+                
+
+                
+                    
+                        <dd><a href="/about/">About</a></dd>
+                    
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="layui-elem-quote markdown-body single-title" >
+                    <h1>直線の方程式 y = ax &#43; b は「線形」ではない?</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <span>2020-04-22</span>
+
+    
+    
+        <a href="/tags/sip/">
+            <span class="layui-badge" style="vertical-align: 2px;">sip</span>
+        </a>
+    
+        <a href="/tags/math/">
+            <span class="layui-badge" style="vertical-align: 2px;">math</span>
+        </a>
+    
+</h3>
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <p>皆さん、直線の方程式 <code>y = ax + b</code> は「線形」でないって知っていましたか?<br>
+僕は今まで知らずに使っていました(汗)</p>
+<p>最近「計算機プログラムの構造と解釈」という本を読んでいるんですが、その中で「線形再帰的プロセス」と「線形反復的プロセス」という言葉が出てきます。そもそも「線形」ってどういうことだっけということで調べてみたところ、下記の記事に分かりやすくまとまっていました。</p>
+<div class="embed">
+    <iframe type="text/html" width="100%" height="180" src="https://hatenablog-parts.com/embed?url=https%3a%2f%2fqiita.com%2fte20%2fitems%2fe91faee8f9eb9b1a869c" allowfullscreen frameborder="0">
+    </iframe>
+</div>
+<p>数学における「線形」とは次の2つの性質を満たすことを言うようです。</p>
+<blockquote>
+<p>f(x+y)=f(x)+f(y)f(x+y)=f(x)+f(y)<br>
+f(kx)=kf(x)f(kx)=kf(x)　ただし、kkは実数</p>
+</blockquote>
+<p>1つ目の性質を<strong>加法性</strong>、2つ目の性質を <strong>斉次性</strong>と言います。</p>
+<p>勉強になった記事の中で触れていますが、 <code>y = 2x + 1 </code> は、1つ目の加法性を満さないため「線形」ではありません。</p>
+<p>普段の会話の中でも、「それって線形(に増加してる)?」などと普通に使われる言葉なので、正しく使いたいですね！</p>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div><footer>
+    
+    
+    <div class="layui-container">
+        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
+    </div>
+</footer>
+</body>
+</html>

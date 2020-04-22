@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Komuta&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Fri, 16 Jun 2017 11:00:46 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 19:54:33 +0900</lastBuildDate>
     
 	<atom:link href="https://shunsukekomuta.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>math</title>
+      <link>https://shunsukekomuta.com/tags/math/</link>
+      <pubDate>Wed, 22 Apr 2020 19:54:33 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sip</title>
+      <link>https://shunsukekomuta.com/tags/sip/</link>
+      <pubDate>Wed, 22 Apr 2020 19:54:33 +0900</pubDate>
+      
+      <guid>https://shunsukekomuta.com/tags/sip/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>php</title>
